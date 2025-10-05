@@ -1,11 +1,14 @@
+import Image from "next/image";
+
 export function Logo() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-      <img
+      <Image
         src="/logo.svg"
         alt="ROAST ME logo"
         width={60}
         height={60}
+        priority
         style={{ borderRadius: "18px", boxShadow: "0 0 18px rgba(255, 64, 129, 0.35)" }}
       />
       <div>
@@ -15,4 +18,3 @@ export function Logo() {
     </div>
   );
 }
-

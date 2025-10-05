@@ -1,4 +1,4 @@
-﻿const MAX_NEW_TOKENS = 180;
+const MAX_NEW_TOKENS = 180;
 const MAX_RETRIES = 3;
 const RETRY_BASE_DELAY_MS = 2000;
 
@@ -223,7 +223,7 @@ async function callDefaultInferenceApi(prompt: string): Promise<string> {
         }
 
         if (response.status === 404) {
-          const fallbackMessage = `Model ${MODEL_ID} tidak ditemukan oleh provider ${PROVIDER}. Pastikan tokenmu punya akses ke repositori di https://huggingface.co/${MODEL_ID} (tab Access → Accept) dan gunakan ID yang benar.`;
+          const fallbackMessage = `Model ${MODEL_ID} tidak ditemukan oleh provider ${PROVIDER}. Pastikan tokenmu punya akses ke repositori di https://huggingface.co/${MODEL_ID} (tab Access ? Accept) dan gunakan ID yang benar.`;
           throw new Error(
             providerMessage && providerMessage !== "Not Found"
               ? `${providerMessage}. ${fallbackMessage}`
@@ -298,6 +298,8 @@ function extractGeneratedText(data: HuggingFaceResponsePayload): string | null {
       : null;
 }
 
+
+
 function getErrorMessage(data: HuggingFaceResponsePayload | null | undefined) {
   if (!data) {
     return null;
@@ -305,9 +307,18 @@ function getErrorMessage(data: HuggingFaceResponsePayload | null | undefined) {
   if (typeof data === "string") {
     return sanitize(data);
   }
-  return typeof data.error === "string" ? sanitize(data.error) : null;
+  if (Array.isArray(data)) {
+    return null;
+  }
+  if (typeof data === "object") {
+    const source = data as HuggingFaceErrorResponse & { message?: string };
+    const fallback = typeof source.message === "string" && source.message.trim() ? source.message : null;
+    const candidate =
+      typeof source.error === "string" && source.error.trim() ? source.error : fallback;
+    return candidate ? sanitize(candidate) : null;
+  }
+  return null;
 }
-
 function extractProviderText(data: unknown): string | null {
   if (!data || typeof data !== "object") {
     return null;
@@ -366,7 +377,7 @@ async function resolveProviderModelId(modelId: string, provider: string): Promis
   const entry = mapping[provider];
   if (!entry?.providerId) {
     throw new Error(
-      `Tidak menemukan mapping provider untuk ${modelId} di ${provider}. Cek https://huggingface.co/${modelId} → tab Access → Inference Providers.`
+      `Tidak menemukan mapping provider untuk ${modelId} di ${provider}. Cek https://huggingface.co/${modelId} ? tab Access ? Inference Providers.`
     );
   }
 
