@@ -7,7 +7,7 @@
   "miniapp": {
     "version": "1",
     "name": "ROAST ME",
-    "subtitle": "English roasts for your Farcaster persona",
+    "subtitle": "English roasts for Farcaster",
     "description": "A playful generator that studies your latest casts and serves smart, English-language roasts tuned for miniapps.",
     "homeUrl": "https://roastme-mu.vercel.app",
     "iconUrl": "https://roastme-mu.vercel.app/logo.svg",
@@ -24,7 +24,7 @@
       "miniapp"
     ],
     "heroImageUrl": "https://roastme-mu.vercel.app/logo.svg",
-    "tagline": "Coming soon: English roasts crafted for Farcaster",
+    "tagline": "Coming soon: English roasts",
     "ogTitle": "ROAST ME — Coming Soon",
     "ogDescription": "We are polishing a Farcaster miniapp that serves English-language roasts tailored to your casts.",
     "ogImageUrl": "https://roastme-mu.vercel.app/logo.svg"
@@ -35,4 +35,5 @@
     ]
   }
 }
+
 

@@ -10,7 +10,7 @@ export const minikitConfig = {
   miniapp: {
     version: "1",
     name: "ROAST ME",
-    subtitle: "English roasts for your Farcaster persona",
+    subtitle: "English roasts for Farcaster",
     description:
       "A playful generator that studies your latest casts and serves smart, English-language roasts tuned for miniapps.",
     homeUrl: ROOT_URL,
@@ -21,7 +21,7 @@ export const minikitConfig = {
     primaryCategory: "social",
     tags: ["farcaster", "roast", "ai", "miniapp"],
     heroImageUrl: `${ROOT_URL}/logo.svg`,
-    tagline: "Coming soon: English roasts crafted for Farcaster",
+    tagline: "Coming soon: English roasts",
     ogTitle: "ROAST ME — Coming Soon",
     ogDescription:
       "We are polishing a Farcaster miniapp that serves English-language roasts tailored to your casts.",
@@ -34,5 +34,6 @@ export const minikitConfig = {
 
 export type MinikitConfig = typeof minikitConfig;
 export { ROOT_URL };
+
 
 
