@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "REPLACE_WITH_SIGNED_HEADER",
+    "payload": "REPLACE_WITH_SIGNED_PAYLOAD",
+    "signature": "REPLACE_WITH_SIGNATURE"
+  },
+  "miniapp": {
+    "name": "ROAST ME",
+    "description": "Roasting generator berdasar cast terbaru.",
+    "url": "https://your-domain.example",
+    "icon": "https://your-domain.example/logo.svg"
+  },
+  "baseBuilder": {
+    "allowedAddresses": [
+      "0xE9445B3a831a675E62db26e90e63E233BdB6F32F"
+    ]
+  }
+}

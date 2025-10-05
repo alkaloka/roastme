@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>ROAST ME logo placeholder</title>
+  <defs>
+    <linearGradient id="fire" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4081" />
+      <stop offset="50%" stop-color="#ff7043" />
+      <stop offset="100%" stop-color="#7f5bff" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="#080808" />
+  <g filter="url(#glow)">
+    <path d="M256 80c72 64 144 112 144 192 0 72-64 128-144 128s-144-56-144-128c0-80 72-128 144-192z" fill="url(#fire)" />
+    <path d="M224 344c12 12 32 12 44 0 12-12 12-32 0-44-12-12-44-20-56-44-12-24 0-60 28-84-60 16-104 60-104 112 0 64 64 112 136 112s136-48 136-112c0-36-20-68-56-92 20 72-32 116-80 152z" fill="#080808" opacity="0.65" />
+  </g>
+</svg>
+
