@@ -247,6 +247,58 @@ export default function Home() {
     };
   }, [theme]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    let disposed = false;
+
+    const invokeReady = () => {
+      if (disposed) {
+        return false;
+      }
+
+      const globalWindow = window as unknown as {
+        sdk?: { actions?: { ready?: () => void } };
+        minikit?: { actions?: { ready?: () => void } };
+        farcaster?: { actions?: { ready?: () => void } };
+      };
+
+      const readyFn =
+        globalWindow.sdk?.actions?.ready ??
+        globalWindow.minikit?.actions?.ready ??
+        globalWindow.farcaster?.actions?.ready;
+
+      if (!readyFn) {
+        return false;
+      }
+
+      try {
+        readyFn();
+        return true;
+      } catch (error) {
+        console.warn("Failed to notify miniapp host via sdk.actions.ready", error);
+        return false;
+      }
+    };
+
+    if (invokeReady()) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      if (invokeReady()) {
+        window.clearInterval(timer);
+      }
+    }, 500);
+
+    return () => {
+      disposed = true;
+      window.clearInterval(timer);
+    };
+  }, []);
+
   const username = useMemo(() => viewer?.username ?? manualUsername.trim(), [viewer?.username, manualUsername]);
   const styles = useMemo(() => createStyles(themes[theme]), [theme]);
 
@@ -309,3 +361,5 @@ export default function Home() {
     </main>
   );
 }
+
+
